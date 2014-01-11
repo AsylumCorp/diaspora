@@ -44,23 +44,3 @@ Feature: new user registration
     And I click close on all the popovers
     And I go to the home page
     Then I should not see "Welcome to Diaspora"
-
-  Scenario: user fills in bogus data - client side validation
-    When I log out manually
-    And I go to the new user registration page
-    And I fill in the following:
-        | user_username        | $%&(/&%$&/=)(/    |
-    And I press "Continue"
-    Then I should see a flash message containing "Email can't be blank - Password can't be blank - Username is invalid."
-
-    When I fill in the following:
-        | user_username     | valid_user                        |
-        | user_email        | this is not a valid email $%&/()( |
-    And I press "Continue"
-    Then I should see a flash message containing "Email is invalid - Password can't be blank"
-
-    When I fill in the following:
-        | user_email        | valid@email.com        |
-        | user_password     | 1                      |
-    And I press "Continue"
-    Then I should see a flash message containing "Password doesn't match confirmation - Password is too short (minimum is 6 characters)"
